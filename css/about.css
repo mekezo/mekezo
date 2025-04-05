@@ -1,0 +1,24 @@
+/* Custom CSS */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+.embed-responsive iframe {
+  border: 0;
+  border-radius: 4px;
+}
+
+.social-links a {
+  font-size: 24px;
+  transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
