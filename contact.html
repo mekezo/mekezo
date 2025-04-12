@@ -102,63 +102,53 @@
             font-size: 16px;
             text-align: center;
         }
-        .social-media {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .social-media a {
-            color: #333;
-            font-size: 24px;
-            transition: color 0.3s;
-        }
-        .social-media a:hover {
-            color: #007bff;
-        } 
-        /* Style the container */
-.social-media-buttons {
-    display: flex;            /* Align buttons horizontally */
-    justify-content: center;  /* Center the buttons */
-    gap: 15px;               /* Space between buttons */
-    margin: 20px 0;          /* Margin around the container */
+        .social-media-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
 }
 
-/* Style each button */
 .social-button {
-    display: flex;            /* Center the icon inside the button */
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;             /* Button width */
-    height: 50px;            /* Button height */
-    border-radius: 50%;      /* Make buttons circular */
-    color: #fff;             /* Icon color (white) */
-    font-size: 20px;         /* Icon size */
-    text-decoration: none;   /* Remove underline from links */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-/* Hover effects */
 .social-button:hover {
-    transform: scale(1.1);    /* Slightly enlarge button on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Platform-specific background colors */
-.facebook {
-    background-color: #3b5998; /* Facebook blue */
+.facebook { background-color: #3b5998; }
+.twitter { background-color: #1da1f2; }
+.instagram { background-color: #e4405f; }
+.linkedin { background-color: #0077b5; }
+.whatsapp { background-color: #25D366; }
+.telegram { background-color: #0088cc; }
+.tiktok { background-color: #000000; }
+
+@media (max-width: 768px) {
+    .social-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
 
-.twitter {
-    background-color: #1da1f2; /* Twitter blue */
-}
-
-.instagram {
-    background-color: #e4405f; /* Instagram pink */
-}
-
-.linkedin {
-    background-color: #0077b5; /* LinkedIn blue */
+@media (max-width: 480px) {
+    .social-button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
 }
 /* Tablets and smaller screens */
 @media (max-width: 768px) {
@@ -274,10 +264,15 @@
                 </div>
             </div>
             <div class="social-media-buttons">
-               <a href="https://web.facebook.com/profile.php?id=100095204626913" target="_blank" class="social-button facebook"><i class="fab fa-facebook-f"></i></a>
-               <a href="#" class="social-button twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-               <a href="https://www.instagram.com/amir.kedir/" class="social-button instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-               <a href="#" class="social-button linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <div class="social-media-buttons">
+                    <a href="https://web.facebook.com/profile.php?id=100095204626913" target="_blank" class="social-button facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/mekezo" target="_blank" class="social-button twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/amir.kedir/" target="_blank" class="social-button instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/company/mekezo" target="_blank" class="social-button linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/25191123353" target="_blank" class="social-button whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://t.me/mekezo" target="_blank" class="social-button telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.tiktok.com/@mekezo" target="_blank" class="social-button tiktok"><i class="fab fa-tiktok"></i></a>
+                </div>
            </div>
             <div class="copyright">
                 <div class="container">
