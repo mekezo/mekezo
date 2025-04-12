@@ -1,0 +1,105 @@
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+.input-group i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+.input-group input, .input-group textarea {
+  padding-left: 35px;
+}
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+        /* Form Container */
+        #contact-form {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          font-family: 'Roboto', sans-serif;
+      }
+      html {
+          scroll-behavior: smooth;
+      }
+      /* Input Fields and Textarea */
+      #contact-form input,
+      #contact-form textarea {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+      }
+      /* Textarea Specific Styling */
+      #contact-form textarea {
+          height: 100px;
+      }
+      /* Focus State for Inputs */
+      #contact-form input:focus,
+      #contact-form textarea:focus {
+          border-color: #007bff;
+          outline: none;
+      }
+      /* Submit Button */
+      #contact-form button {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s;
+          width: 100%;
+      }
+      /* Button Hover Effect */
+      #contact-form button:hover {
+          background-color: #0056b3;
+          transform: scale(1.05);
+      }
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+          #contact-form {
+              padding: 15px;
+          }
+          #contact-form input,
+          #contact-form textarea {
+              font-size: 14px;
+          }
+      }
+      /* Status Message */
+      #status-message {
+          margin-top: 10px;
+          font-size: 16px;
+          text-align: center;
+      }
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+  .social-button {
+      width: 40px;         /* Smaller width */
+      height: 40px;        /* Smaller height */
+      font-size: 16px;     /* Smaller icon */
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .social-button {
+      width: 35px;         /* Even smaller width */
+      height: 35px;        /* Even smaller height */
+      font-size: 14px;     /* Even smaller icon */
+  }
+}
