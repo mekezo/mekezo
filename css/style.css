@@ -790,11 +790,42 @@ ul.btn li:last-child {
 #myCarousel .carousel-control-prev-icon {
      display: none;
 }
+@media (max-width: 768px) {
+     .logo img {
+        max-width: 150px; /* Adjust this value to fit your design */
+        height: auto;     /* Keeps the aspect ratio intact */
+     }
+  }
+  .navbar-toggler {
+     border-color: #fff; /* Adds a white border (adjust color as needed) */
+  }
 
+  @media (max-width: 768px) {
+     .navbar-collapse {
+        background-color: #333; /* Dark background for contrast */
+        padding: 10px;          /* Adds space inside the menu */
+     }
+     .navbar-nav .nav-link {
+        color: #fff;           /* White text for readability */
+        padding: 10px 15px;    /* Spacing between menu items */
+     }
+  }
+  @media (max-width: 768px) {
+     .navbar-collapse {
+        width: 100%;
+     }
+  }
 
+  .navbar-collapse {
+     z-index: 1000;
+  }
 /** end testimonial section **/
 
-
+.carousel-caption .text-bg {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
 /** footer **/
 
 .footer {
@@ -992,3 +1023,59 @@ ul.social_icon li a:hover {
 
 
 /** end footer **/
+@media (max-width: 767px) {
+     .navbar-toggler {
+         display: block !important;
+     }
+     .navbar-toggler-icon {
+         background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+     }
+ }
+ .social-media-buttons {
+     display: flex;
+     justify-content: center;
+     gap: 15px;
+     margin: 20px 0;
+ }
+ 
+ .social-button {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     color: #fff;
+     font-size: 20px;
+     text-decoration: none;
+     transition: all 0.3s ease;
+ }
+ 
+ .social-button:hover {
+     transform: scale(1.1);
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .facebook { background-color: #3b5998; }
+ .twitter { background-color: #1da1f2; }
+ .instagram { background-color: #e4405f; }
+ .linkedin { background-color: #0077b5; }
+ .whatsapp { background-color: #25D366; }
+ .telegram { background-color: #0088cc; }
+ .tiktok { background-color: #000000; }
+ 
+ @media (max-width: 768px) {
+     .social-button {
+         width: 40px;
+         height: 40px;
+         font-size: 16px;
+     }
+ }
+ 
+ @media (max-width: 480px) {
+     .social-button {
+         width: 35px;
+         height: 35px;
+         font-size: 14px;
+     }
+ }
