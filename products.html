@@ -292,7 +292,35 @@
     </div>
 </footer>
     <!-- End Footer Section -->
-
+     <script>
+    fetch('https://api.airtable.com/v0/appufYLt1wjHScUPZ/Products', {
+        headers: {
+          'Authorization': 'Bearer patSrV4DClRIQ4eNM.e81e0ca11890a602ec0caafc4fe940cc212ff4855dacd9d2173e35bf082c3d3b'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          const products = data.records;
+          const container = document.querySelector('.products .row');
+          container.innerHTML = '';
+          products.forEach(product => {
+            const fields = product.fields;
+            const imageUrl = fields.Image ? fields.Image[0].url : '';
+            container.innerHTML += `
+              <div class="col-md-6 margin_bottom">
+                <div class="work">
+                  <figure><img src="${imageUrl}" alt="${fields.Name}"></figure>
+                  <div class="work_text">
+                    <h3>${fields.Name}<br><span class="blu">${fields.Category}</span></h3>
+                    <p>${fields.Description}</p>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        })
+        .catch(error => console.error('Error fetching products:', error));
+    </script>
     <!-- Javascript Files -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
