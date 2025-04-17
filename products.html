@@ -227,6 +227,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>More Products from Airtable</h3>
+                            </div>
+                        </div>
+                        <div class="row" id="airtable-products">
+                            <!-- Airtable products will be inserted here -->
+                        </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -293,33 +303,57 @@
 </footer>
     <!-- End Footer Section -->
      <script>
-    fetch('https://api.airtable.com/v0/appufYLt1wjHScUPZ/Products', {
-        headers: {
-          'Authorization': 'Bearer patSrV4DClRIQ4eNM.e81e0ca11890a602ec0caafc4fe940cc212ff4855dacd9d2173e35bf082c3d3b'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          const products = data.records;
-          const container = document.querySelector('.products .row');
-          container.innerHTML = '';
-          products.forEach(product => {
-            const fields = product.fields;
-            const imageUrl = fields.Image ? fields.Image[0].url : '';
-            container.innerHTML += `
-              <div class="col-md-6 margin_bottom">
+   <script>
+fetch('https://api.airtable.com/v0/appufYLt1wjHScUPZ/Table%201', {
+    headers: {
+        'Authorization': 'Bearer patSrV4DClRIQ4eNM.e81e0ca11890a602ec0caafc4fe940cc212ff4855dacd9d2173e35bf082c3d3b'
+    }
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+})
+.then(data => {
+    const products = data.records;
+    const container = document.querySelector('#airtable-products');
+    if (!container) {
+        console.error('Airtable products container not found');
+        return;
+    }
+    container.innerHTML = ''; // Clear the container before adding new content
+    if (products.length === 0) {
+        container.innerHTML = '<p>No products found in Airtable.</p>';
+        return;
+    }
+    products.forEach(product => {
+        const fields = product.fields;
+        const name = fields.Name || 'Unnamed Product';
+        const category = fields.Category || 'Uncategorized';
+        const description = fields.Description || 'No description available';
+        const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : 'image/placeholder.jpg'; // Update with a real placeholder path
+        container.innerHTML += `
+            <div class="col-md-6 margin_bottom">
                 <div class="work">
-                  <figure><img src="${imageUrl}" alt="${fields.Name}"></figure>
-                  <div class="work_text">
-                    <h3>${fields.Name}<br><span class="blu">${fields.Category}</span></h3>
-                    <p>${fields.Description}</p>
-                  </div>
+                    <figure><img src="${imageUrl}" alt="${name}" class="img-resize"></figure>
+                    <div class="work_text">
+                        <h3>${name}<br><span class="blu">${category}</span></h3>
+                        <p>${description}</p>
+                    </div>
                 </div>
-              </div>
-            `;
-          });
-        })
-        .catch(error => console.error('Error fetching products:', error));
+            </div>
+        `;
+    });
+})
+.catch(error => {
+    console.error('Error fetching products:', error);
+    const container = document.querySelector('#airtable-products');
+    if (container) {
+        container.innerHTML = '<p>Failed to load products. Please try again later.</p>';
+    }
+});
+</script>
     </script>
     <!-- Javascript Files -->
     <script src="js/jquery.min.js"></script>
