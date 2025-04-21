@@ -1,20 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Basic Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- Site Metas -->
-    <title>Products - Mekezo</title>
-    <meta name="keywords" content="car accessories, Mekezo, Ethiopia, comfort, safety, style">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Site Meta Tags -->
+    <title data-i18n="products_title">Products - Mekezo</title>
     <meta name="description" content="Explore Mekezo’s wide range of premium car accessories for comfort, safety, and style.">
+    <meta name="keywords" content="car accessories, Mekezo, Ethiopia, comfort, safety, style">
     <meta name="author" content="">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/products.css">
@@ -24,296 +21,485 @@
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome and Fancybox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Fancybox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- i18next -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
     <style>
-    
+        .navbar {
+            background: linear-gradient(to right, #007bff, #6610f2);
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand img {
+            height: 100px;
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover,
+        .nav-link:focus {
+            color: #ffd700 !important;
+        }
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .dropdown-menu {
+            background-color: #6610f2;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-item {
+            color: white;
+        }
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #007bff;
+            color: #ffd700;
+        }
+        .language-switcher select {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .language-switcher select:hover {
+            background-color: #0056b3;
+        }
+        body {
+            padding-top: 70px;
+        }
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .facebook { background-color: #3b5998; }
+        .twitter { background-color: #1da1f2; }
+        .instagram { background-color: #e4405f; }
+        .linkedin { background-color: #0077b5; }
+        .whatsapp { background-color: #25D366; }
+        .telegram { background-color: #0088cc; }
+        .tiktok { background-color: #000000; }
     </style>
-    <!-- Tweaks for Older IEs -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body class="main-layout">
-    <!-- Header Section -->
-    <header>
-        <div class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                        <div class="full">
-                            <div class="center-desk">
-                                <div class="logo">
-                                    <a href="index.html"><img src="image/mekezo.jpg" alt="Mekezo Logo" /></a>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="image/mekezo.jpg" alt="Mekezo Logo"></a>
+                <button class="navbar-toggler" type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html" data-i18n="home">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="products">Products</a>
+                            <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                                <li><a class="dropdown-item" href="products.html#comfort" data-i18n="comfort">Comfort</a></li>
+                                <li><a class="dropdown-item" href="products.html#safety" data-i18n="safety">Safety</a></li>
+                                <li><a class="dropdown-item" href="products.html#style" data-i18n="style">Style</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html" data-i18n="about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html" data-i18n="contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    <div class="language-switcher ms-3">
+                        <select id="language-select" class="form-select" style="width: auto;">
+                            <option value="en">English</option>
+                            <option value="am">አማርኛ</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End Header -->
+
+    <!-- Products Section -->
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2 data-i18n="our_products">Our Products</h2>
+                        <p data-i18n="products_intro">Browse our complete collection of premium car accessories.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comfort Accessories -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 data-i18n="comfort_accessories">Comfort Accessories</h3>
+                </div>
+            </div>
+            <div class="row comfort-products">
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/seat-cushion.jpg" alt="Ergonomic Seat Cushion" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="seat_cushion_title">Ergonomic Seat Cushion<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
+                                    <p data-i18n="seat_cushion_desc">Designed to provide support and reduce fatigue during long drives.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/mat.jpg" alt="Premium Floor Mats" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="floor_mats_title">Premium Floor Mats<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
+                                    <p data-i18n="floor_mats_desc">Protect your car's interior with these durable and easy-to-clean mats.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/wheel.jpg" alt="Steering Wheel Cover" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="wheel_cover_title">Steering Wheel Cover<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
+                                    <p data-i18n="wheel_cover_desc">Enhance grip and comfort with our stylish steering wheel covers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/pillow.jpg" alt="Lumbar Support Pillow" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="lumbar_pillow_title">Lumbar Support Pillow<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
+                                    <p data-i18n="lumbar_pillow_desc">Improve posture and reduce back pain with this adjustable pillow.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                        <nav class="navigation navbar navbar-expand-md navbar-dark">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarsExample04">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index.html">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="about.html">About</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="products.html">Products</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact Us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
+                </div>
+                <div class="col-md-10 offset-md-1" id="airtable-comfort"></div>
+            </div>
+
+            <!-- Safety Gear -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 data-i18n="safety_gear">Safety Gear</h3>
                 </div>
             </div>
-        </div>
-    </header>
-    <!-- End Header Section -->
-
-    <!-- Products Section -->
- <!-- Products Section -->
-<div class="products">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="titlepage">
-                    <h2>Our Products</h2>
-                    <p>Browse our complete collection of premium car accessories.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Comfort Accessories -->
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Comfort Accessories</h3>
-            </div>
-        </div>
-        <div class="row comfort-products">
-            <!-- Static Comfort Products -->
-            <div class="col-md-10 offset-md-1">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/seat-cushion.jpg" alt="Ergonomic Seat Cushion" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Ergonomic Seat Cushion<br><span class="blu">Comfort</span></h3>
-                                <p>Designed to provide support and reduce fatigue during long drives.</p>
+            <div class="row safety-products">
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/dash cam.jpg" alt="HD Dashcam" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="dashcam_title">HD Dashcam<br><span class="blu" data-i18n="safety">Safety</span></h3>
+                                    <p data-i18n="dashcam_desc">Capture every moment on the road with crystal-clear HD recording.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/mat.jpg" alt="Premium Floor Mats" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Premium Floor Mats<br><span class="blu">Comfort</span></h3>
-                                <p>Protect your car's interior with these durable and easy-to-clean mats.</p>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/pressure.jpg" alt="Tire Pressure Monitoring System" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="tire_monitor_title">Tire Pressure Monitoring System<br><span class="blu" data-i18n="safety">Safety</span></h3>
+                                    <p data-i18n="tire_monitor_desc">Keep your tires at optimal pressure for safety and efficiency.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/wheel.jpg" alt="Steering Wheel Cover" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Steering Wheel Cover<br><span class="blu">Comfort</span></h3>
-                                <p>Enhance grip and comfort with our stylish steering wheel covers.</p>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/safety.jpg" alt="First Aid Kit" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="first_aid_title">First Aid Kit<br><span class="blu" data-i18n="safety">Safety</span></h3>
+                                    <p data-i18n="first_aid_desc">Be prepared for emergencies with this comprehensive first aid kit.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/pillow.jpg" alt="Lumbar Support Pillow" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Lumbar Support Pillow<br><span class="blu">Comfort</span></h3>
-                                <p>Improve posture and reduce back pain with this adjustable pillow.</p>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/blind.jpg" alt="Blind Spot Mirrors" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="blind_spot_title">Blind Spot Mirrors<br><span class="blu" data-i18n="safety">Safety</span></h3>
+                                    <p data-i18n="blind_spot_desc">Increase visibility and reduce the risk of accidents with these mirrors.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-10 offset-md-1" id="airtable-safety"></div>
             </div>
-            <!-- Dynamic Comfort Products from Airtable -->
-            <div class="col-md-10 offset-md-1" id="airtable-comfort">
-                <!-- Airtable comfort products will be inserted here -->
-            </div>
-        </div>
 
-        <!-- Safety Gear -->
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Safety Gear</h3>
+            <!-- Style Upgrades -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 data-i18n="style_upgrades">Style Upgrades</h3>
+                </div>
             </div>
-        </div>
-        <div class="row safety-products">
-            <!-- Static Safety Products -->
-            <div class="col-md-10 offset-md-1">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/dash cam.jpg" alt="HD Dashcam" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>HD Dashcam<br><span class="blu">Safety</span></h3>
-                                <p>Capture every moment on the road with crystal-clear HD recording.</p>
+            <div class="row style-products">
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/alloy.jpg" alt="Alloy Wheels" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="alloy_wheels_title">Alloy Wheels<br><span class="blu" data-i18n="style">Style</span></h3>
+                                    <p data-i18n="alloy_wheels_desc">Elevate your vehicle’s look with our durable and stylish alloy wheels.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/pressure.jpg" alt="Tire Pressure Monitoring System" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Tire Pressure Monitoring System<br><span class="blu">Safety</span></h3>
-                                <p>Keep your tires at optimal pressure for safety and efficiency.</p>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/cover.jpg" alt="Car Cover" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="car_cover_title">Car Cover<br><span class="blu" data-i18n="style">Style</span></h3>
+                                    <p data-i18n="car_cover_desc">Shield your vehicle from the elements with our premium car covers.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/safety.jpg" alt="First Aid Kit" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>First Aid Kit<br><span class="blu">Safety</span></h3>
-                                <p>Be prepared for emergencies with this comprehensive first aid kit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/blind.jpg" alt="Blind Spot Mirrors" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Blind Spot Mirrors<br><span class="blu">Safety</span></h3>
-                                <p>Increase visibility and reduce the risk of accidents with these mirrors.</p>
+                        <div class="col-md-6 margin_bottom">
+                            <div class="work">
+                                <figure><img class="img-resize" src="image/led.jpg" alt="LED Headlight Bulbs" loading="lazy"></figure>
+                                <div class="work_text">
+                                    <h3 data-i18n="led_headlights_title">LED Headlight Bulbs<br><span class="blu" data-i18n="style">Style</span></h3>
+                                    <p data-i18n="led_headlights_desc">Improve visibility and style with bright and energy-efficient LED lights.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Dynamic Safety Products from Airtable -->
-            <div class="col-md-10 offset-md-1" id="airtable-safety">
-                <!-- Airtable safety products will be inserted here -->
+                <div class="col-md-10 offset-md-1" id="airtable-style"></div>
             </div>
         </div>
-
-        <!-- Style Upgrades -->
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Style Upgrades</h3>
-            </div>
-        </div>
-        <div class="row style-products">
-            <!-- Static Style Products -->
-            <div class="col-md-10 offset-md-1">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/alloy.jpg" alt="Alloy Wheels" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Alloy Wheels<br><span class="blu">Style</span></h3>
-                                <p>Elevate your vehicle’s look with our durable and stylish alloy wheels.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/cover.jpg" alt="Car Cover" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>Car Cover<br><span class="blu">Style</span></h3>
-                                <p>Shield your vehicle from the elements with our premium car covers.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 margin_bottom">
-                        <div class="work">
-                            <figure><img class="img-resize" src="image/led.jpg" alt="LED Headlight Bulbs" loading="lazy"></figure>
-                            <div class="work_text">
-                                <h3>LED Headlight Bulbs<br><span class="blu">Style</span></h3>
-                                <p>Improve visibility and style with bright and energy-efficient LED lights.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Dynamic Style Products from Airtable -->
-            <div class="col-md-10 offset-md-1" id="airtable-style">
-                <!-- Airtable style products will be inserted here -->
-            </div>
-        </div>
-
-        <!-- Other Products -->
-        
-       
     </div>
-</div>
-<!-- End Products Section -->
     <!-- End Products Section -->
 
     <!-- Footer Section -->
-   <!-- Replace the existing footer in about.html with this -->
-<footer id="contact">
-    <div class="footer">
-        <div class="container">
-            <!-- Contact Section -->
-            <div class="row mb-5">
-                <div class="col-12 col-md-4 mb-4 mb-md-0">
-                    <div class="titlepage">
-                        <h2>Contact Us</h2>
+    <footer id="contact">
+        <div class="footer">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                        <div class="titlepage">
+                            <h2 data-i18n="contact_us">Contact Us</h2>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="social-media-buttons">
+                                    <a href="https://web.facebook.com/profile.php?id=100095204626913" target="_blank" class="social-button facebook" aria-label="Visit Mekezo on Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://x.com/mekezo" target="_blank" class="social-button twitter" aria-label="Visit Mekezo on Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.instagram.com/amir.kedir/" target="_blank" class="social-button instagram" aria-label="Visit Mekezo on Instagram"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://linkedin.com/company/mekezo" target="_blank" class="social-button linkedin" aria-label="Visit Mekezo on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://wa.me/25191123353" target="_blank" class="social-button whatsapp" aria-label="Visit Mekezo on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="https://t.me/mekezo" target="_blank" class="social-button telegram" aria-label="Visit Mekezo on Telegram"><i class="fab fa-telegram-plane"></i></a>
+                                    <a href="https://www.tiktok.com/@mekezo" target="_blank" class="social-button tiktok" aria-label="Visit Mekezo on TikTok"><i class="fab fa-tiktok"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            <!-- Map Section -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="map">
-                        <iframe title="Mekezo Location Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.694160224613!2d38.731557147224855!3d9.047929747046751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f408771b125%3A0x1f01d03e2bd22dd4!2zR2V0ZXIgQnVpbGRpbmcgfCBFbmt1bGFsIEZhYnJpY2EgfCDhjIjhibDhiK0g4YiF4YqV4Yy7IHwg4Yql4YqV4YmB4YiL4YiNIOGNi-GJpeGIquGKqw!5e0!3m2!1sen!2sus!4v1743838531110!5m2!1sen!2sus" 
-                                width="100%" 
-                                height="450" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-8">
-                <div class="row justify-content-center">
+                <div class="row">
                     <div class="col-12">
-                        <div class="social-media-buttons">
-                            <a href="https://web.facebook.com/profile.php?id=100095204626913" target="_blank" class="social-button facebook" aria-label="Visit Mekezo on Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://x.com/mekezo" target="_blank" class="social-button twitter" aria-label="Visit Mekezo on Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/amir.kedir/" target="_blank" class="social-button instagram"><i class="fab fa-instagram" aria-label="Visit Mekezo on Instagram"></i></a>
-                            <a href="https://linkedin.com/company/mekezo" target="_blank" class="social-button linkedin"><i class="fab fa-linkedin-in" aria-label="Visit Mekezo on Linkedin"></i></a>
-                            <a href="https://wa.me/25191123353" target="_blank" class="social-button whatsapp"><i class="fab fa-whatsapp" aria-label="Visit Mekezo on Whatsapp"></i></a>
-                            <a href="https://t.me/mekezo" target="_blank" class="social-button telegram"><i class="fab fa-telegram-plane" aria-label="Visit Mekezo on Telegram"></i></a>
-                            <a href="https://www.tiktok.com/@mekezo" target="_blank" class="social-button tiktok"><i class="fab fa-tiktok" aria-label="Visit Mekezo on Tiktok"></i></a>
+                        <div class="map">
+                            <iframe title="Mekezo Location Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.694160224613!2d38.731557147224855!3d9.047929747046751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f408771b125%3A0x1f01d03e2bd22dd4!2zR2V0ZXIgQnVpbGRpbmcgfCBFbmt1bGFsIEZhYnJpY2EgfCDhjIjhibDhiK0g4YiF4YqV4Yy7IHwg4Yql4YqV4YmB4YiL4YiNIOGNi-GJpeGIquGKqw!5e0!3m2!1sen!2sus!4v1743838531110!5m2!1sen!2sus" 
+                                    width="100%" 
+                                    height="450" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>© <span id="current-year"></span> <span data-i18n="copyright">Mekezo. All rights reserved.</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-            <!-- Copyright Section -->
-            <div class="copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>© <span id="current-year"></span> Mekezo. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
     <!-- End Footer Section -->
+
+    <!-- Javascript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/scripts.js"></script>
     <script>
+        // i18next Initialization
+        i18next.init({
+            lng: 'en',
+            resources: {
+                en: {
+                    translation: {
+                        "home": "Home",
+                        "products": "Products",
+                        "comfort": "Comfort",
+                        "safety": "Safety",
+                        "style": "Style",
+                        "about": "About",
+                        "contact": "Contact Us",
+                        "contact_us": "Contact Us",
+                        "products_title": "Products - Mekezo",
+                        "our_products": "Our Products",
+                        "products_intro": "Browse our complete collection of premium car accessories.",
+                        "comfort_accessories": "Comfort Accessories",
+                        "seat_cushion_title": "Ergonomic Seat Cushion",
+                        "seat_cushion_desc": "Designed to provide support and reduce fatigue during long drives.",
+                        "floor_mats_title": "Premium Floor Mats",
+                        "floor_mats_desc": "Protect your car's interior with these durable and easy-to-clean mats.",
+                        "wheel_cover_title": "Steering Wheel Cover",
+                        "wheel_cover_desc": "Enhance grip and comfort with our stylish steering wheel covers.",
+                        "lumbar_pillow_title": "Lumbar Support Pillow",
+                        "lumbar_pillow_desc": "Improve posture and reduce back pain with this adjustable pillow.",
+                        "safety_gear": "Safety Gear",
+                        "dashcam_title": "HD Dashcam",
+                        "dashcam_desc": "Capture every moment on the road with crystal-clear HD recording.",
+                        "tire_monitor_title": "Tire Pressure Monitoring System",
+                        "tire_monitor_desc": "Keep your tires at optimal pressure for safety and efficiency.",
+                        "first_aid_title": "First Aid Kit",
+                        "first_aid_desc": "Be prepared for emergencies with this comprehensive first aid kit.",
+                        "blind_spot_title": "Blind Spot Mirrors",
+                        "blind_spot_desc": "Increase visibility and reduce the risk of accidents with these mirrors.",
+                        "style_upgrades": "Style Upgrades",
+                        "alloy_wheels_title": "Alloy Wheels",
+                        "alloy_wheels_desc": "Elevate your vehicle’s look with our durable and stylish alloy wheels.",
+                        "car_cover_title": "Car Cover",
+                        "car_cover_desc": "Shield your vehicle from the elements with our premium car covers.",
+                        "led_headlights_title": "LED Headlight Bulbs",
+                        "led_headlights_desc": "Improve visibility and style with bright and energy-efficient LED lights.",
+                        "copyright": "Mekezo. All rights reserved."
+                    }
+                },
+                am: {
+                    translation: {
+                        "home": "ቤት",
+                        "products": "ምርቶች",
+                        "comfort": "ምቾት",
+                        "safety": "ደህንነት",
+                        "style": "ስታይል",
+                        "about": "ስለ እኛ",
+                        "contact": "ያግኙን",
+                        "contact_us": "ያግኙን",
+                        "products_title": "ምርቶች - መከዞ",
+                        "our_products": "የእኛ ምርቶች",
+                        "products_intro": "የእኛን ፕሪሚየም የመኪና መለዋወጫዎች ሙሉ ስብስብ ያስሱ።",
+                        "comfort_accessories": "የምቾት መለዋወጫዎች",
+                        "seat_cushion_title": "ኤርጎኖሚክ የመቀመጫ ትራስ",
+                        "seat_cushion_desc": "ለረጅም ጊዜ መንዳት ድጋፍ ለመስጠት እና ድካምን ለመቀነስ የተነደፈ።",
+                        "floor_mats_title": "ፕሪሚየም የወለል ምንጣፎች",
+                        "floor_mats_desc": "የመኪናዎን ውስጠኛ ክፍል በእነዚህ ዘላቂ እና ለማጽዳት ቀላል በሆኑ ምንጣፎች ይጠብቁ።",
+                        "wheel_cover_title": "የመሪ መንኮራኩር ሽፋን",
+                        "wheel_cover_desc": "በእኛ ቅጥ ያጣ የመሪ መንኮራኩር ሽፋኖች መያዣን እና ምቾትን ያሳድጉ።",
+                        "lumbar_pillow_title": "የላምባር ድጋፍ ትራስ",
+                        "lumbar_pillow_desc": "በዚህ ሊስተካከል በሚችል ትራስ አቀማመጥን ያሻሽሉ እና የጀርባ ህመምን ይቀንሱ።",
+                        "safety_gear": "የደህንነት መሣሪያዎች",
+                        "dashcam_title": "ኤች ዲ ዳሽካም",
+                        "dashcam_desc": "በመንገድ ላይ ያለውን እያንዳንዱን ቅጽበት በግልጽ በሆነ ኤች ዲ ቀረጻ ይያዙ።",
+                        "tire_monitor_title": "የጎማ ግፊት መከታተያ ስርዓት",
+                        "tire_monitor_desc": "ለደህንነት እና ቅልጥፍና ጎማዎችዎን በተሻለ ግፊት ያቆዩ።",
+                        "first_aid_title": "የመጀመሪያ እርዳታ መሣሪያ",
+                        "first_aid_desc": "ለአስቸኳይ ጊዜ በዚህ አጠቃላይ የመጀመሪያ እርዳታ መሣሪያ ይዘጋጁ።",
+                        "blind_spot_title": "የዓይነ ስውር ቦታ መስተዋቶች",
+                        "blind_spot_desc": "በእነዚህ መስተዋቶች ታይነትን ይጨምሩ እና የአደጋ ስጋትን ይቀንሱ።",
+                        "style_upgrades": "የስታይል ማሻሻያዎች",
+                        "alloy_wheels_title": "የአሎይ ጎማዎች",
+                        "alloy_wheels_desc": "በእኛ ዘላቂ እና ቅጥ ያጣ የአሎይ ጎማዎች የተሽከርካሪዎን መልክ ያሳድጉ።",
+                        "car_cover_title": "የመኪና ሽፋን",
+                        "car_cover_desc": "ተሽከርካሪዎን ከንጥረ ነገሮች በእኛ ፕሪሚየም የመኪና ሽፋኖች ይጠብቁ።",
+                        "led_headlights_title": "ኤል ኢ ዲ የፊት መብራቶች",
+                        "led_headlights_desc": "በብሩህ እና ኃይል ቆጣቢ ኤል ኢ ዲ መብራቶች ታይነትን እና ስታይልን ያሻሽሉ።",
+                        "copyright": "መከዞ. ሁሉም መብቶች የተጠበቁ ናቸው."
+                    }
+                }
+            }
+        }, function(err, t) {
+            updateContent();
+        });
+
+        // Update Content Function
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const i18nValues = el.getAttribute('data-i18n').split(';');
+                i18nValues.forEach(value => {
+                    if (value.startsWith('[')) {
+                        const match = value.match(/\[(.+)\](.+)/);
+                        if (match) {
+                            const attr = match[1];
+                            const key = match[2];
+                            el.setAttribute(attr, i18next.t(key));
+                        }
+                    } else {
+                        el.innerHTML = i18next.t(value);
+                    }
+                });
+            });
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            document.title = i18next.t('products_title');
+        }
+
+        // Assuming this is your language switcher code
+document.getElementById('language-select').addEventListener('change', function() {
+  i18next.changeLanguage(this.value, function() {
+    updateContent(); // Update static content
+    renderProducts(); // Update dynamic products
+  });
+});
+
+// Existing function to update static content
+function updateContent() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.innerHTML = i18next.t(key);
+  });
+}
+
+        // Initial Translation
+        updateContent();
+
+        // Airtable Fetch
         fetch('https://api.airtable.com/v0/appufYLt1wjHScUPZ/Table%201', {
             headers: {
                 'Authorization': 'Bearer patSrV4DClRIQ4eNM.e81e0ca11890a602ec0caafc4fe940cc212ff4855dacd9d2173e35bf082c3d3b'
@@ -327,31 +513,22 @@
         })
         .then(data => {
             const products = data.records;
-        
-            // Define category containers
             const comfortContainer = document.querySelector('#airtable-comfort');
             const safetyContainer = document.querySelector('#airtable-safety');
             const styleContainer = document.querySelector('#airtable-style');
-            const otherContainer = document.querySelector('#airtable-other');
-        
-            // Clear containers before adding new content
-            [comfortContainer, safetyContainer, styleContainer, otherContainer].forEach(container => {
+            [comfortContainer, safetyContainer, styleContainer].forEach(container => {
                 if (container) container.innerHTML = '';
             });
-        
             if (products.length === 0) {
-                otherContainer.innerHTML = '<p>No products found in Airtable.</p>';
+                comfortContainer.innerHTML = '<p data-i18n="no_products">No products found in Airtable.</p>';
                 return;
             }
-        
             products.forEach(product => {
                 const fields = product.fields;
                 const name = fields.Name || 'Unnamed Product';
-                const category = (fields.Category || 'Other').toLowerCase(); // Default to 'Other' if no category
+                const category = (fields.Category || 'Other').toLowerCase();
                 const description = fields.Description || 'No description available';
-                const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : 'image/placeholder.jpg'; // Update with real placeholder path
-        
-                // Determine the container based on category
+                const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : 'image/placeholder.jpg';
                 let targetContainer;
                 switch (category) {
                     case 'comfort':
@@ -363,18 +540,14 @@
                     case 'style':
                         targetContainer = styleContainer;
                         break;
-                    default:
-                        targetContainer = otherContainer;
                 }
-        
-                // Append product to the appropriate container
                 if (targetContainer) {
                     targetContainer.innerHTML += `
                         <div class="col-md-6 margin_bottom">
                             <div class="work">
                                 <figure><img src="${imageUrl}" alt="${name}" class="img-resize"></figure>
                                 <div class="work_text">
-                                    <h3>${name}<br><span class="blu">${category.charAt(0).toUpperCase() + category.slice(1)}</span></h3>
+                                    <h3>${name}<br><span class="blu">${i18next.t(category)}</span></h3>
                                     <p>${description}</p>
                                 </div>
                             </div>
@@ -385,21 +558,58 @@
         })
         .catch(error => {
             console.error('Error fetching products:', error);
-            const otherContainer = document.querySelector('#airtable-other');
-            if (otherContainer) {
-                otherContainer.innerHTML = '<p>Failed to load products. Please try again later.</p>';
-            }
+            document.querySelector('#airtable-comfort').innerHTML = '<p data-i18n="fetch_error">Failed to load products. Please try again later.</p>';
         });
-        </script>
-    <!-- Javascript Files -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <!-- Sidebar -->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/scripts.js"></script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92b8a2a279bbbf8b',t:'MTc0Mzg1MTgwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+        // Assuming this is your fetch code
+fetch('https://api.airtable.com/v0/YOUR_BASE_ID/YOUR_TABLE_NAME', {
+  headers: { Authorization: 'Bearer YOUR_API_KEY' }
+})
+.then(response => response.json())
+.then(data => {
+  // Store products globally
+  window.productsData = data.records;
+  renderProducts(); // Initial render
+});
+
+// Function to render products based on current language
+function renderProducts() {
+  const lang = i18next.language; // Get current language ('en' or 'am')
+  const comfortContainer = document.querySelector('#airtable-comfort');
+  const safetyContainer = document.querySelector('#airtable-safety');
+  const styleContainer = document.querySelector('#airtable-style');
+
+  // Clear containers
+  comfortContainer.innerHTML = '';
+  safetyContainer.innerHTML = '';
+  styleContainer.innerHTML = '';
+
+  window.productsData.forEach(product => {
+    const fields = product.fields;
+    // Select name and description with fallback to English
+    const name = fields[`Name_${lang}`] || fields['Name_en'] || 'Unnamed Product';
+    const description = fields[`Description_${lang}`] || fields['Description_en'] || 'No description';
+    const category = fields.Category; // e.g., "comfort"
+    const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : 'image/placeholder.jpg';
+
+    // HTML template for the product
+    const productHTML = `
+      <div class="col-md-6 margin_bottom">
+        <div class="work">
+          <figure><img src="${imageUrl}" alt="${name}" class="img-resize"></figure>
+          <div class="work_text">
+            <h3>${name}<br><span class="blu">${i18next.t(category)}</span></h3>
+            <p>${description}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Append to the appropriate container based on category
+    if (category === 'comfort') comfortContainer.innerHTML += productHTML;
+    else if (category === 'safety') safetyContainer.innerHTML += productHTML;
+    else if (category === 'style') styleContainer.innerHTML += productHTML;
+  });
+}
+    </script>
 </body>
 </html>
