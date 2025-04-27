@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Site Meta Tags -->
     <title data-i18n="about_title">About Mekezo - Premium Car Accessories</title>
-    <meta name="description" content="Learn more about Mekezo, a leading provider of premium car accessories in Ethiopia, founded by Amir Kedir.">
+    <meta name="description" content="Learn more about Mekezo, a leading provider of premium car accessories in Ethiopia, founded by Amir Kedir;">
     <meta name="keywords" content="car accessories, Mekezo, Ethiopia, comfort, safety, style, Amir Kedir">
     <meta name="author" content="">
     <!-- Bootstrap CSS (CDN) -->
@@ -29,11 +29,18 @@
     <!-- i18next -->
     <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
     <style>
+        .text-muted { 
+            color: white !important; 
+            font-size: 20px;
+        }
+        .text-muted:hover { 
+            color: rgb(16, 242, 148) !important; 
+        }
         .navbar {
             background: linear-gradient(to right, #007bff, #6610f2);
             padding: 15px 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            height:150px;
+            height: 150px;
         }
         .navbar-brand img {
             height: 100px;
@@ -70,15 +77,21 @@
             background-color: #007bff;
             color: #ffd700;
         }
-        .language-switcher select {
+        .language-switcher select, .theme-switcher i {
             background-color: #007bff;
             color: white;
             border: none;
             padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top:10px;
         }
-        .language-switcher select:hover {
+        .theme-switcher i {
+            height:30px;
+          
+            
+        }
+        .language-switcher select:hover, .theme-switcher i:hover {
             background-color: #0056b3;
         }
         body {
@@ -118,6 +131,22 @@
         .whatsapp { background-color: #25D366; }
         .telegram { background-color: #0088cc; }
         .tiktok { background-color: #000000; }
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .dark-mode .navbar {
+            background: linear-gradient(to right, #004085, #3c096c);
+        }
+        .dark-mode .about_box {
+            background-color: #444;
+            color: #fff;
+        }
+        .dark-mode .footer {
+            background-color: #222;
+            color: #fff;
+        }
     </style>
 </head>
 <body class="main-layout">
@@ -159,6 +188,9 @@
                             <option value="en">English</option>
                             <option value="am">አማርኛ</option>
                         </select>
+                    </div>
+                    <div class="theme-switcher ms-3">
+                        <i id="theme-icon" class="fa-solid fa-moon" aria-label="Switch to dark mode"></i>
                     </div>
                 </div>
             </div>
@@ -241,6 +273,9 @@
                         </div>
                     </div>
                 </div>
+                <a href="#" class="text-muted small" data-bs-toggle="modal" data-bs-target="#devContact">
+                    <i class="fas fa-code"></i>Contact Developer
+                  </a>
                 <!-- Copyright Section -->
                 <div class="copyright">
                     <div class="container">
@@ -251,12 +286,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="devContact">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Work with the Developer</h5>
+                        </div>
+                        <div class="modal-body">
+                           <p><i class="fas fa-map-marker-alt"></i>  Ethiopia, Addiss Ababa, Near Ayertena</p>
+                          <a href="/cdn-cgi/l/email-protection#b3dedcdbd2deded6d7d8d2dedadfdedcdbd2deded6d78285f3d4ded2dadf9dd0dcde" target="_blank"><p><i class="fas fa-envelope"></i>  <span class="__cf_email__" data-cfemail="193436313834343c3d32383430353436313834343c3d686f193e34383035773a3634">[email&#160;protected]</span></p></a>
+                          <a href="https://mohammedkamil-crypto.github.io/portfolio/" target="_blank"><p><i class="fas fa-globe"></i>  mohammedkamil-crypto.github.io/portfolio/</p></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
     </footer>
     <!-- End Footer Section -->
 
     <!-- Javascript Files -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
@@ -282,7 +332,13 @@
                         "about_paragraph2": "Our mission is to offer products that not only improve the functionality of your vehicle but also elevate its aesthetic appeal. From ergonomic seat cushions and advanced dashcams to stylish alloy wheels and protective car covers, Mekezo ensures that every product meets the highest standards of quality and durability.",
                         "about_paragraph3": "Under the visionary leadership of Amir Kedir, Mekezo has grown to become a trusted name in the automotive accessories industry. Amir's passion for innovation and commitment to customer satisfaction drive our continuous efforts to bring the best products to the Ethiopian market.",
                         "explore_products": "Explore Our Products",
-                        "copyright": "Mekezo. All rights reserved."
+                        "copyright": "Mekezo. All rights reserved.",
+                        "developed_by": "Developed by",
+                        "work_with": "Work with the Developer",
+                        "dev_address": "Addis Ababa, Ethiopia",
+                        "work_inquiry": "Hire the Developer",
+                        "dev_contact": "Developer Contact",
+                        "dev_portfolio": "Portfolio"
                     }
                 },
                 am: {
@@ -301,7 +357,13 @@
                         "about_paragraph2": "የእኛ ተልዕኮ የተሽከርካሪዎን ተግባራዊነት ብቻ ሳይሆን ውበቱንም የሚያሳድጉ ምርቶችን ማቅረብ ነው። ከኤርጎኖሚክ የመቀመጫ ትራስ እና የላቀ ዳሽካም እስከ ቅጥ ያጣ የአሎይ ጎማዎች እና መከላከያ የመኪና ሽፋኖች፣ መከዞ እያንዳንዱ ምርት ከፍተኛውን የጥራት እና የጥንካሬ ደረጃዎችን ማሟላቱን ያረጋግጣል።",
                         "about_paragraph3": "በአሚር ከድር ራዕይ አመራር ስር፣ መከዞ በአውቶሞቲቭ መለዋወጫዎች ኢንዱስትሪ ውስጥ የታመነ ስም ሆኗል። የአሚር ለፈጠራ ያለው ፍቅር እና ለደንበኛ እርካታ ያለው ቁርጠኝነት ምርጥ ምርቶችን ወደ ኢትዮጵያ ገበያ ለማምጣት ያለንን ቀጣይነት ያለው ጥረት ያነሳሳል።",
                         "explore_products": "ምርቶቻችንን ያስሱ",
-                        "copyright": "መከዞ. ሁሉም መብቶች የተጠበቁ ናቸው."
+                        "copyright": "መከዞ. ሁሉም መብቶች የተጠበቁ ናቸው.",
+                        "developed_by": "የተሰራው በ",
+                        "dev_address": "አዲስ አበባ፣ ኢትዮጵያ፣ አየርጠና",
+                        "work_inquiry": "አበልጻጊውን ይቅጥሩ",
+                        "dev_contact": "የልማት አበልጻጊ አድራሻ",
+                        "dev_portfolio": "ስራዎች",
+                        "work_with": "አብረን እንስራ"
                     }
                 }
             }
@@ -335,8 +397,22 @@
             i18next.changeLanguage(this.value, updateContent);
         });
 
+        // Theme Toggle
+        document.getElementById('theme-icon').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                this.classList.remove('fa-moon');
+                this.classList.add('fa-sun');
+                this.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                this.classList.remove('fa-sun');
+                this.classList.add('fa-moon');
+                this.setAttribute('aria-label', 'Switch to dark mode');
+            }
+        });
+
         // Initial Translation
         updateContent();
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9368b3c45eb47bbe',t:'MTc0NTY5ODAwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
