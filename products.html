@@ -7,9 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Site Meta Tags -->
     <title data-i18n="products_title">Products - Mekezo</title>
-    <meta name="description" content="Explore Mekezo’s wide range of premium car accessories for comfort, safety, and style.">
+    <meta name="description" content="Explore Mekezo’s premium car accessories for comfort, safety, and style.">
     <meta name="keywords" content="car accessories, Mekezo, Ethiopia, comfort, safety, style">
-    <meta name="author" content="">
+    <meta name="author" content="Mekezo Team">
+    <!-- Open Graph Tags for Social Sharing -->
+    <meta property="og:title" content="Products - Mekezo">
+    <meta property="og:description" content="Explore Mekezo’s premium car accessories for comfort, safety, and style.">
+    <meta property="og:image" content="image/mekezo.jpg">
+    <meta property="og:url" content="https://www.mekezo.com/products.html">
     <!-- Bootstrap CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Style CSS -->
@@ -29,6 +34,7 @@
     <!-- i18next -->
     <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
     <style>
+        /* Header Styles */
         .navbar {
             background: linear-gradient(to right, #007bff, #6610f2);
             padding: 15px 0;
@@ -50,12 +56,6 @@
         .nav-link:focus {
             color: #ffd700 !important;
         }
-        .navbar-toggler {
-            border-color: rgba(255, 255, 255, 0.8);
-        }
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
         .dropdown-menu {
             background-color: #6610f2;
             border: none;
@@ -69,20 +69,89 @@
             background-color: #007bff;
             color: #ffd700;
         }
-        .language-switcher select {
+        .language-switcher select, .theme-switcher i {
             background-color: #007bff;
             color: white;
             border: none;
             padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top:10px;
+            margin-left:0px;
         }
-        .language-switcher select:hover {
+        .language-switcher select:hover, .theme-switcher i:hover {
             background-color: #0056b3;
         }
         body {
             padding-top: 70px;
         }
+        /* Products Section Styles */
+        .products {
+            padding: 50px 0;
+        }
+        .titlepage {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .titlepage h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .titlepage p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        h3 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+        .filter-section {
+            margin-bottom: 30px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .product-card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .modal-content {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .dark-mode .navbar {
+            background: linear-gradient(to right, #004085, #3c096c);
+        }
+        .dark-mode .card {
+            background-color: #444;
+            color: #fff;
+        }
+        .dark-mode .modal-content {
+            background-color: #444;
+            color: #fff;
+        }
+        /* Footer Styles */
         .social-button {
             display: flex;
             align-items: center;
@@ -148,6 +217,9 @@
                             <option value="am">አማርኛ</option>
                         </select>
                     </div>
+                    <div class="theme-switcher ms-3">
+                        <i id="theme-icon" class="fa-solid fa-moon" aria-label="Switch to dark mode" style="cursor: pointer; font-size: 24px; color: white;"></i>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -166,149 +238,180 @@
                 </div>
             </div>
 
+            <!-- Filter and Search Section -->
+            <div class="row filter-section">
+                <div class="col-md-6">
+                    <input type="text" id="search-input" class="form-control search-bar" placeholder="Search products..." aria-label="Search products">
+                </div>
+                <div class="col-md-6">
+                    <select id="category-filter" class="form-select" aria-label="Filter by category">
+                        <option value="all">All Categories</option>
+                        <option value="comfort">Comfort</option>
+                        <option value="safety">Safety</option>
+                        <option value="style">Style</option>
+                    </select>
+                </div>
+            </div>
+
             <!-- Comfort Accessories -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 data-i18n="comfort_accessories">Comfort Accessories</h3>
+                    <h3 id="comfort" data-i18n="comfort_accessories">Comfort Accessories</h3>
                 </div>
             </div>
-            <div class="row comfort-products">
-                <div class="col-md-10 offset-md-1">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/seat-cushion.jpg" alt="Ergonomic Seat Cushion" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="seat_cushion_title">Ergonomic Seat Cushion<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
-                                    <p data-i18n="seat_cushion_desc">Designed to provide support and reduce fatigue during long drives.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/mat.jpg" alt="Premium Floor Mats" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="floor_mats_title">Premium Floor Mats<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
-                                    <p data-i18n="floor_mats_desc">Protect your car's interior with these durable and easy-to-clean mats.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/wheel.jpg" alt="Steering Wheel Cover" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="wheel_cover_title">Steering Wheel Cover<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
-                                    <p data-i18n="wheel_cover_desc">Enhance grip and comfort with our stylish steering wheel covers.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/pillow.jpg" alt="Lumbar Support Pillow" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="lumbar_pillow_title">Lumbar Support Pillow<br><span class="blu" data-i18n="comfort">Comfort</span></h3>
-                                    <p data-i18n="lumbar_pillow_desc">Improve posture and reduce back pain with this adjustable pillow.</p>
-                                </div>
-                            </div>
+            <div class="row comfort-products" id="comfort-products">
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="comfort" data-bs-toggle="modal" data-bs-target="#productModal" data-product="seat_cushion">
+                        <img src="image/seat-cushion.jpg" class="card-img-top" alt="Ergonomic Seat Cushion" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="seat_cushion_title">Ergonomic Seat Cushion</h5>
+                            <p class="card-text" data-i18n="seat_cushion_desc">Designed to provide support and reduce fatigue during long drives.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10 offset-md-1" id="airtable-comfort"></div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="comfort" data-bs-toggle="modal" data-bs-target="#productModal" data-product="floor_mats">
+                        <img src="image/mat.jpg" class="card-img-top" alt="Premium Floor Mats" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="floor_mats_title">Premium Floor Mats</h5>
+                            <p class="card-text" data-i18n="floor_mats_desc">Protect your car's interior with these durable and easy-to-clean mats.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="comfort" data-bs-toggle="modal" data-bs-target="#productModal" data-product="neck_pillow">
+                        <img src="image/neck-pillow.jpg" class="card-img-top" alt="Neck Support Pillow" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="neck_pillow_title">Neck Support Pillow</h5>
+                            <p class="card-text" data-i18n="neck_pillow_desc">Provides comfort and support for your neck during long trips.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="comfort" data-bs-toggle="modal" data-bs-target="#productModal" data-product="car_organizer">
+                        <img src="image/organizer.jpg" class="card-img-top" alt="Car Organizer" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="car_organizer_title">Car Organizer</h5>
+                            <p class="card-text" data-i18n="car_organizer_desc">Keep your car tidy with this multi-compartment organizer.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-10 offset-md-1" id="airtable-comfort"></div>
 
             <!-- Safety Gear -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 data-i18n="safety_gear">Safety Gear</h3>
+                    <h3 id="safety" data-i18n="safety_gear">Safety Gear</h3>
                 </div>
             </div>
-            <div class="row safety-products">
-                <div class="col-md-10 offset-md-1">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/dash cam.jpg" alt="HD Dashcam" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="dashcam_title">HD Dashcam<br><span class="blu" data-i18n="safety">Safety</span></h3>
-                                    <p data-i18n="dashcam_desc">Capture every moment on the road with crystal-clear HD recording.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/pressure.jpg" alt="Tire Pressure Monitoring System" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="tire_monitor_title">Tire Pressure Monitoring System<br><span class="blu" data-i18n="safety">Safety</span></h3>
-                                    <p data-i18n="tire_monitor_desc">Keep your tires at optimal pressure for safety and efficiency.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/safety.jpg" alt="First Aid Kit" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="first_aid_title">First Aid Kit<br><span class="blu" data-i18n="safety">Safety</span></h3>
-                                    <p data-i18n="first_aid_desc">Be prepared for emergencies with this comprehensive first aid kit.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/blind.jpg" alt="Blind Spot Mirrors" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="blind_spot_title">Blind Spot Mirrors<br><span class="blu" data-i18n="safety">Safety</span></h3>
-                                    <p data-i18n="blind_spot_desc">Increase visibility and reduce the risk of accidents with these mirrors.</p>
-                                </div>
-                            </div>
+            <div class="row safety-products" id="safety-products">
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="safety" data-bs-toggle="modal" data-bs-target="#productModal" data-product="dashcam">
+                        <img src="image/dash cam.jpg" class="card-img-top" alt="HD Dashcam" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="dashcam_title">HD Dashcam</h5>
+                            <p class="card-text" data-i18n="dashcam_desc">Capture every moment on the road with crystal-clear HD recording.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10 offset-md-1" id="airtable-safety"></div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="safety" data-bs-toggle="modal" data-bs-target="#productModal" data-product="tire_monitor">
+                        <img src="image/pressure.jpg" class="card-img-top" alt="Tire Pressure Monitoring System" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="tire_monitor_title">Tire Pressure Monitoring System</h5>
+                            <p class="card-text" data-i18n="tire_monitor_desc">Keep your tires at optimal pressure for safety and efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="safety" data-bs-toggle="modal" data-bs-target="#productModal" data-product="escape_tool">
+                        <img src="image/escape-tool.jpg" class="card-img-top" alt="Emergency Escape Tool" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="escape_tool_title">Emergency Escape Tool</h5>
+                            <p class="card-text" data-i18n="escape_tool_desc">Essential tool for breaking windows and cutting seatbelts in emergencies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="safety" data-bs-toggle="modal" data-bs-target="#productModal" data-product="safety_vest">
+                        <img src="image/safety-vest.jpg" class="card-img-top" alt="Reflective Safety Vest" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="safety_vest_title">Reflective Safety Vest</h5>
+                            <p class="card-text" data-i18n="safety_vest_desc">High-visibility vest for safety during roadside emergencies.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-10 offset-md-1" id="airtable-safety"></div>
 
             <!-- Style Upgrades -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 data-i18n="style_upgrades">Style Upgrades</h3>
+                    <h3 id="style" data-i18n="style_upgrades">Style Upgrades</h3>
                 </div>
             </div>
-            <div class="row style-products">
-                <div class="col-md-10 offset-md-1">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/alloy.jpg" alt="Alloy Wheels" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="alloy_wheels_title">Alloy Wheels<br><span class="blu" data-i18n="style">Style</span></h3>
-                                    <p data-i18n="alloy_wheels_desc">Elevate your vehicle’s look with our durable and stylish alloy wheels.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/cover.jpg" alt="Car Cover" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="car_cover_title">Car Cover<br><span class="blu" data-i18n="style">Style</span></h3>
-                                    <p data-i18n="car_cover_desc">Shield your vehicle from the elements with our premium car covers.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img class="img-resize" src="image/led.jpg" alt="LED Headlight Bulbs" loading="lazy"></figure>
-                                <div class="work_text">
-                                    <h3 data-i18n="led_headlights_title">LED Headlight Bulbs<br><span class="blu" data-i18n="style">Style</span></h3>
-                                    <p data-i18n="led_headlights_desc">Improve visibility and style with bright and energy-efficient LED lights.</p>
-                                </div>
-                            </div>
+            <div class="row style-products" id="style-products">
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="style" data-bs-toggle="modal" data-bs-target="#productModal" data-product="alloy_wheels">
+                        <img src="image/alloy.jpg" class="card-img-top" alt="Alloy Wheels" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="alloy_wheels_title">Alloy Wheels</h5>
+                            <p class="card-text" data-i18n="alloy_wheels_desc">Elevate your vehicle’s look with our durable and stylish alloy wheels.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10 offset-md-1" id="airtable-style"></div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="style" data-bs-toggle="modal" data-bs-target="#productModal" data-product="led_headlights">
+                        <img src="image/led.jpg" class="card-img-top" alt="LED Headlight Bulbs" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="led_headlights_title">LED Headlight Bulbs</h5>
+                            <p class="card-text" data-i18n="led_headlights_desc">Improve visibility and style with bright and energy-efficient LED lights.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="style" data-bs-toggle="modal" data-bs-target="#productModal" data-product="decals">
+                        <img src="image/decals.jpg" class="card-img-top" alt="Custom Car Decals" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="decals_title">Custom Car Decals</h5>
+                            <p class="card-text" data-i18n="decals_desc">Personalize your vehicle with custom decals and stickers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 margin_bottom">
+                    <div class="card product-card" data-category="style" data-bs-toggle="modal" data-bs-target="#productModal" data-product="lighting_kit">
+                        <img src="image/lighting-kit.jpg" class="card-img-top" alt="Ambient Lighting Kit" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="lighting_kit_title">Ambient Lighting Kit</h5>
+                            <p class="card-text" data-i18n="lighting_kit_desc">Add a touch of style with customizable interior lighting.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-10 offset-md-1" id="airtable-style"></div>
         </div>
     </div>
     <!-- End Products Section -->
+
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="share-product">Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Section -->
     <footer id="contact">
@@ -339,7 +442,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="map">
-                            <iframe title="Mekezo Location Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.694160224613!2d38.731557147224855!3d9.047929747046751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f408771b125%3A0x1f01d03e2bd22dd4!2zR2V0ZXIgQnVpbGRpbmcgfCBFbmt1bGFsIEZhYnJpY2EgfCDhjIjhibDhiK0g4YiF4YqV4Yy7IHwg4Yql4YqV4YmB4YiL4YiNIOGNi-GJpeGIquGKqw!5e0!3m2!1sen!2sus!4v1743838531110!5m2!1sen!2sus" 
+                            <iframe id="map" title="Mekezo Location Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.694160224613!2d38.731557147224855!3d9.047929747046751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f408771b125%3A0x1f01d03e2bd22dd4!2zR2V0ZXIgQnVpbGRpbmcgfCBFbmt1bGFsIEZhYnJpY2EgfCDhjIjhibDhiK0g4YiF4YqV4Yy7IHwg4Yql4YqV4YmB4YiL4YiNIOGNi-GJpeGIquGKqw!5e0!3m2!1sen!2sus!4v1743838531110!5m2!1sen!2sus" 
                                     width="100%" 
                                     height="450" 
                                     style="border:0;" 
@@ -390,27 +493,31 @@
                         "seat_cushion_desc": "Designed to provide support and reduce fatigue during long drives.",
                         "floor_mats_title": "Premium Floor Mats",
                         "floor_mats_desc": "Protect your car's interior with these durable and easy-to-clean mats.",
-                        "wheel_cover_title": "Steering Wheel Cover",
-                        "wheel_cover_desc": "Enhance grip and comfort with our stylish steering wheel covers.",
-                        "lumbar_pillow_title": "Lumbar Support Pillow",
-                        "lumbar_pillow_desc": "Improve posture and reduce back pain with this adjustable pillow.",
+                        "neck_pillow_title": "Neck Support Pillow",
+                        "neck_pillow_desc": "Provides comfort and support for your neck during long trips.",
+                        "car_organizer_title": "Car Organizer",
+                        "car_organizer_desc": "Keep your car tidy with this multi-compartment organizer.",
                         "safety_gear": "Safety Gear",
                         "dashcam_title": "HD Dashcam",
                         "dashcam_desc": "Capture every moment on the road with crystal-clear HD recording.",
                         "tire_monitor_title": "Tire Pressure Monitoring System",
                         "tire_monitor_desc": "Keep your tires at optimal pressure for safety and efficiency.",
-                        "first_aid_title": "First Aid Kit",
-                        "first_aid_desc": "Be prepared for emergencies with this comprehensive first aid kit.",
-                        "blind_spot_title": "Blind Spot Mirrors",
-                        "blind_spot_desc": "Increase visibility and reduce the risk of accidents with these mirrors.",
+                        "escape_tool_title": "Emergency Escape Tool",
+                        "escape_tool_desc": "Essential tool for breaking windows and cutting seatbelts in emergencies.",
+                        "safety_vest_title": "Reflective Safety Vest",
+                        "safety_vest_desc": "High-visibility vest for safety during roadside emergencies.",
                         "style_upgrades": "Style Upgrades",
                         "alloy_wheels_title": "Alloy Wheels",
                         "alloy_wheels_desc": "Elevate your vehicle’s look with our durable and stylish alloy wheels.",
-                        "car_cover_title": "Car Cover",
-                        "car_cover_desc": "Shield your vehicle from the elements with our premium car covers.",
                         "led_headlights_title": "LED Headlight Bulbs",
                         "led_headlights_desc": "Improve visibility and style with bright and energy-efficient LED lights.",
-                        "copyright": "Mekezo. All rights reserved."
+                        "decals_title": "Custom Car Decals",
+                        "decals_desc": "Personalize your vehicle with custom decals and stickers.",
+                        "lighting_kit_title": "Ambient Lighting Kit",
+                        "lighting_kit_desc": "Add a touch of style with customizable interior lighting.",
+                        "copyright": "Mekezo. All rights reserved.",
+                        "no_products": "No products found in Airtable.",
+                        "fetch_error": "Failed to load products. Please try again later."
                     }
                 },
                 am: {
@@ -431,27 +538,31 @@
                         "seat_cushion_desc": "ለረጅም ጊዜ መንዳት ድጋፍ ለመስጠት እና ድካምን ለመቀነስ የተነደፈ።",
                         "floor_mats_title": "ፕሪሚየም የወለል ምንጣፎች",
                         "floor_mats_desc": "የመኪናዎን ውስጠኛ ክፍል በእነዚህ ዘላቂ እና ለማጽዳት ቀላል በሆኑ ምንጣፎች ይጠብቁ።",
-                        "wheel_cover_title": "የመሪ መንኮራኩር ሽፋን",
-                        "wheel_cover_desc": "በእኛ ቅጥ ያጣ የመሪ መንኮራኩር ሽፋኖች መያዣን እና ምቾትን ያሳድጉ።",
-                        "lumbar_pillow_title": "የላምባር ድጋፍ ትራስ",
-                        "lumbar_pillow_desc": "በዚህ ሊስተካከል በሚችል ትራስ አቀማመጥን ያሻሽሉ እና የጀርባ ህመምን ይቀንሱ።",
+                        "neck_pillow_title": "የአንገት ድጋፍ ትራስ",
+                        "neck_pillow_desc": "ለረጅም ጉዞዎች ለአንገትዎ ምቾት እና ድጋፍ ይሰጣል።",
+                        "car_organizer_title": "የመኪና አደራጅ",
+                        "car_organizer_desc": "በዚህ ባለብዙ-ክፍል አደራጅ መኪናዎን ንፁህ ያድርጉት።",
                         "safety_gear": "የደህንነት መሣሪያዎች",
                         "dashcam_title": "ኤች ዲ ዳሽካም",
                         "dashcam_desc": "በመንገድ ላይ ያለውን እያንዳንዱን ቅጽበት በግልጽ በሆነ ኤች ዲ ቀረጻ ይያዙ።",
                         "tire_monitor_title": "የጎማ ግፊት መከታተያ ስርዓት",
                         "tire_monitor_desc": "ለደህንነት እና ቅልጥፍና ጎማዎችዎን በተሻለ ግፊት ያቆዩ።",
-                        "first_aid_title": "የመጀመሪያ እርዳታ መሣሪያ",
-                        "first_aid_desc": "ለአስቸኳይ ጊዜ በዚህ አጠቃላይ የመጀመሪያ እርዳታ መሣሪያ ይዘጋጁ።",
-                        "blind_spot_title": "የዓይነ ስውር ቦታ መስተዋቶች",
-                        "blind_spot_desc": "በእነዚህ መስተዋቶች ታይነትን ይጨምሩ እና የአደጋ ስጋትን ይቀንሱ።",
+                        "escape_tool_title": "የአስቸኳይ ጊዜ ማምለጫ መሣሪያ",
+                        "escape_tool_desc": "በድንገተኛ ሁኔታዎች መስኮቶችን ለመስበር እና የመቀመጫ ቀበቶዎችን ለመቁረጥ አስፈላጊ መሣሪያ።",
+                        "safety_vest_title": "አንጸባራቂ የደህንነት ቀሚስ",
+                        "safety_vest_desc": "ለመንገድ ዳር ድንገተኛ ሁኔታዎች የደህንነት ከፍተኛ ታይነት ቀሚስ።",
                         "style_upgrades": "የስታይል ማሻሻያዎች",
                         "alloy_wheels_title": "የአሎይ ጎማዎች",
                         "alloy_wheels_desc": "በእኛ ዘላቂ እና ቅጥ ያጣ የአሎይ ጎማዎች የተሽከርካሪዎን መልክ ያሳድጉ።",
-                        "car_cover_title": "የመኪና ሽፋን",
-                        "car_cover_desc": "ተሽከርካሪዎን ከንጥረ ነገሮች በእኛ ፕሪሚየም የመኪና ሽፋኖች ይጠብቁ።",
                         "led_headlights_title": "ኤል ኢ ዲ የፊት መብራቶች",
                         "led_headlights_desc": "በብሩህ እና ኃይል ቆጣቢ ኤል ኢ ዲ መብራቶች ታይነትን እና ስታይልን ያሻሽሉ።",
-                        "copyright": "መከዞ. ሁሉም መብቶች የተጠበቁ ናቸው."
+                        "decals_title": "ብጁ የመኪና ዲካሎች",
+                        "decals_desc": "በብጁ ዲካሎች እና ተለጣፊዎች ተሽከርካሪዎን ያብጁ።",
+                        "lighting_kit_title": "የአካባቢ ብርሃን ኪት",
+                        "lighting_kit_desc": "በሚበጅ የውስጥ ብርሃን የስታይል ስሜት ይጨምሩ።",
+                        "copyright": "መከዞ. ሁሉም መብቶች የተጠበቁ ናቸው.",
+                        "no_products": "በAirtable ውስጥ ምርቶች አልተገኙም።",
+                        "fetch_error": "ምርቶችን መጫን አልተሳካም። እባክዎ ቆይተው ይሞክሩ።"
                     }
                 }
             }
@@ -480,26 +591,30 @@
             document.title = i18next.t('products_title');
         }
 
-        // Assuming this is your language switcher code
-document.getElementById('language-select').addEventListener('change', function() {
-  i18next.changeLanguage(this.value, function() {
-    updateContent(); // Update static content
-    renderProducts(); // Update dynamic products
-  });
-});
+        // Language Switcher
+        document.getElementById('language-select').addEventListener('change', function() {
+            i18next.changeLanguage(this.value, function() {
+                updateContent();
+                renderProducts();
+            });
+        });
 
-// Existing function to update static content
-function updateContent() {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    el.innerHTML = i18next.t(key);
-  });
-}
+        // Theme Toggle
+        document.getElementById('theme-icon').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                this.classList.remove('fa-moon');
+                this.classList.add('fa-sun');
+                this.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                this.classList.remove('fa-sun');
+                this.classList.add('fa-moon');
+                this.setAttribute('aria-label', 'Switch to dark mode');
+            }
+        });
 
-        // Initial Translation
-        updateContent();
-
-        // Airtable Fetch
+        // Airtable Fetch and Render
+        let productsData = [];
         fetch('https://api.airtable.com/v0/appufYLt1wjHScUPZ/Table%201', {
             headers: {
                 'Authorization': 'Bearer patSrV4DClRIQ4eNM.e81e0ca11890a602ec0caafc4fe940cc212ff4855dacd9d2173e35bf082c3d3b'
@@ -512,22 +627,32 @@ function updateContent() {
             return response.json();
         })
         .then(data => {
-            const products = data.records;
+            productsData = data.records;
+            renderProducts();
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            document.querySelector('#airtable-comfort').innerHTML = '<p data-i18n="fetch_error">Failed to load products. Please try again later.</p>';
+        });
+
+        // Render Products Function
+        function renderProducts() {
+            const lang = i18next.language;
             const comfortContainer = document.querySelector('#airtable-comfort');
             const safetyContainer = document.querySelector('#airtable-safety');
             const styleContainer = document.querySelector('#airtable-style');
             [comfortContainer, safetyContainer, styleContainer].forEach(container => {
                 if (container) container.innerHTML = '';
             });
-            if (products.length === 0) {
+            if (productsData.length === 0) {
                 comfortContainer.innerHTML = '<p data-i18n="no_products">No products found in Airtable.</p>';
                 return;
             }
-            products.forEach(product => {
+            productsData.forEach(product => {
                 const fields = product.fields;
-                const name = fields.Name || 'Unnamed Product';
+                const name = fields[`Name_${lang}`] || fields.Name || 'Unnamed Product';
+                const description = fields[`Description_${lang}`] || fields.Description || 'No description available';
                 const category = (fields.Category || 'Other').toLowerCase();
-                const description = fields.Description || 'No description available';
                 const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : 'image/placeholder.jpg';
                 let targetContainer;
                 switch (category) {
@@ -544,72 +669,85 @@ function updateContent() {
                 if (targetContainer) {
                     targetContainer.innerHTML += `
                         <div class="col-md-6 margin_bottom">
-                            <div class="work">
-                                <figure><img src="${imageUrl}" alt="${name}" class="img-resize"></figure>
-                                <div class="work_text">
-                                    <h3>${name}<br><span class="blu">${i18next.t(category)}</span></h3>
-                                    <p>${description}</p>
+                            <div class="card product-card" data-category="${category}" data-bs-toggle="modal" data-bs-target="#productModal" data-product="${product.id}">
+                                <img src="${imageUrl}" class="card-img-top" alt="${name}" loading="lazy">
+                                <div class="card-body">
+                                    <h5 class="card-title">${name}</h5>
+                                    <p class="card-text">${description}</p>
                                 </div>
                             </div>
                         </div>
                     `;
                 }
             });
-        })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            document.querySelector('#airtable-comfort').innerHTML = '<p data-i18n="fetch_error">Failed to load products. Please try again later.</p>';
+        }
+
+        // Modal Content Population
+        document.addEventListener('click', function(event) {
+            const card = event.target.closest('.product-card');
+            if (card) {
+                const productId = card.getAttribute('data-product');
+                let product;
+                if (productId.startsWith('rec')) {
+                    product = productsData.find(p => p.id === productId);
+                } else {
+                    const staticProducts = {
+                        'seat_cushion': { name: i18next.t('seat_cushion_title'), desc: i18next.t('seat_cushion_desc'), img: 'image/seat-cushion.jpg' },
+                        'floor_mats': { name: i18next.t('floor_mats_title'), desc: i18next.t('floor_mats_desc'), img: 'image/mat.jpg' },
+                        'neck_pillow': { name: i18next.t('neck_pillow_title'), desc: i18next.t('neck_pillow_desc'), img: 'image/neck-pillow.jpg' },
+                        'car_organizer': { name: i18next.t('car_organizer_title'), desc: i18next.t('car_organizer_desc'), img: 'image/organizer.jpg' },
+                        'dashcam': { name: i18next.t('dashcam_title'), desc: i18next.t('dashcam_desc'), img: 'image/dash cam.jpg' },
+                        'tire_monitor': { name: i18next.t('tire_monitor_title'), desc: i18next.t('tire_monitor_desc'), img: 'image/pressure.jpg' },
+                        'escape_tool': { name: i18next.t('escape_tool_title'), desc: i18next.t('escape_tool_desc'), img: 'image/escape-tool.jpg' },
+                        'safety_vest': { name: i18next.t('safety_vest_title'), desc: i18next.t('safety_vest_desc'), img: 'image/safety-vest.jpg' },
+                        'alloy_wheels': { name: i18next.t('alloy_wheels_title'), desc: i18next.t('alloy_wheels_desc'), img: 'image/alloy.jpg' },
+                        'led_headlights': { name: i18next.t('led_headlights_title'), desc: i18next.t('led_headlights_desc'), img: 'image/led.jpg' },
+                        'decals': { name: i18next.t('decals_title'), desc: i18next.t('decals_desc'), img: 'image/decals.jpg' },
+                        'lighting_kit': { name: i18next.t('lighting_kit_title'), desc: i18next.t('lighting_kit_desc'), img: 'image/lighting-kit.jpg' }
+                    };
+                    product = staticProducts[productId];
+                }
+                if (product) {
+                    document.getElementById('modal-content').innerHTML = `
+                        <h3>${product.name}</h3>
+                        <img src="${product.img || (product.fields.Image && product.fields.Image[0].url)}" alt="${product.name}" style="width:100%; margin-bottom:20px;" loading="lazy">
+                        <p>${product.desc || product.fields[`Description_${i18next.language}`] || product.fields.Description}</p>
+                    `;
+                }
+            }
         });
-        // Assuming this is your fetch code
-fetch('https://api.airtable.com/v0/YOUR_BASE_ID/YOUR_TABLE_NAME', {
-  headers: { Authorization: 'Bearer YOUR_API_KEY' }
-})
-.then(response => response.json())
-.then(data => {
-  // Store products globally
-  window.productsData = data.records;
-  renderProducts(); // Initial render
-});
 
-// Function to render products based on current language
-function renderProducts() {
-  const lang = i18next.language; // Get current language ('en' or 'am')
-  const comfortContainer = document.querySelector('#airtable-comfort');
-  const safetyContainer = document.querySelector('#airtable-safety');
-  const styleContainer = document.querySelector('#airtable-style');
+        // Search and Filter Functionality
+        document.getElementById('search-input').addEventListener('input', filterProducts);
+        document.getElementById('category-filter').addEventListener('change', filterProducts);
 
-  // Clear containers
-  comfortContainer.innerHTML = '';
-  safetyContainer.innerHTML = '';
-  styleContainer.innerHTML = '';
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const selectedCategory = document.getElementById('category-filter').value;
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                const productName = card.querySelector('.card-title').textContent.toLowerCase();
+                const productCategory = card.getAttribute('data-category');
+                const matchesSearch = productName.includes(searchTerm);
+                const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
+                card.style.display = (matchesSearch && matchesCategory) ? 'block' : 'none';
+            });
+        }
 
-  window.productsData.forEach(product => {
-    const fields = product.fields;
-    // Select name and description with fallback to English
-    const name = fields[`Name_${lang}`] || fields['Name_en'] || 'Unnamed Product';
-    const description = fields[`Description_${lang}`] || fields['Description_en'] || 'No description';
-    const category = fields.Category; // e.g., "comfort"
-    const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : 'image/placeholder.jpg';
-
-    // HTML template for the product
-    const productHTML = `
-      <div class="col-md-6 margin_bottom">
-        <div class="work">
-          <figure><img src="${imageUrl}" alt="${name}" class="img-resize"></figure>
-          <div class="work_text">
-            <h3>${name}<br><span class="blu">${i18next.t(category)}</span></h3>
-            <p>${description}</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Append to the appropriate container based on category
-    if (category === 'comfort') comfortContainer.innerHTML += productHTML;
-    else if (category === 'safety') safetyContainer.innerHTML += productHTML;
-    else if (category === 'style') styleContainer.innerHTML += productHTML;
-  });
-}
+        // Social Sharing (Basic Implementation)
+        document.getElementById('share-product').addEventListener('click', function() {
+            const title = document.querySelector('#productModalLabel').textContent;
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: 'Check out this product from Mekezo!',
+                    url: url
+                }).catch(console.error);
+            } else {
+                alert('Sharing not supported. Copy this link: ' + url);
+            }
+        });
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9364efff0b286788',t:'MTc0NTY1ODUyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
