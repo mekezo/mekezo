@@ -1,0 +1,402 @@
+.text-muted { 
+  color: #333; /* Dark color for light mode */
+  font-size: 20px;
+}
+.text-muted:hover { 
+  color: #007bff; /* Hover color for light mode */
+}
+
+.dark-mode .text-muted { 
+  color: white; /* White text for dark mode */
+}
+.dark-mode .text-muted:hover { 
+  color: rgb(16, 242, 148); /* Hover color for dark mode */
+}
+      .navbar {
+          background: linear-gradient(to right, #007bff, #6610f2);
+          padding: 15px 0;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .nav-link {
+          color: white !important;
+          font-weight: 500;
+          transition: color 0.3s ease;
+      }
+      .nav-link:hover,
+      .nav-link:focus {
+          color: #8dd8bb !important;
+      }
+      .navbar-toggler {
+          border-color: rgba(255, 255, 255, 0.8);
+      }
+      .navbar-toggler-icon {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+      .dropdown-menu {
+          background-color: #6610f2;
+          border: none;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .dropdown-item {
+          color: white;
+      }
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+          background-color: #007bff;
+          color: rgb(88, 172, 165);
+      }
+      .language-switcher select, .theme-switcher i {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-right:20px;
+          margin-top:20px;
+      }
+      .language-switcher select:hover, .theme-switcher i:hover {
+          background-color: #0056b3;
+      }
+      body {
+          padding-top: 80px;
+      }
+      /* Form Container */
+      #contact-form {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          font-family: 'Roboto', sans-serif;
+      }
+      html {
+          scroll-behavior: smooth;
+      }
+      #contact-form input,
+      #contact-form textarea {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+      }
+      #contact-form textarea {
+          height: 100px;
+      }
+      #contact-form input:focus,
+      #contact-form textarea:focus {
+          border-color: #007bff;
+          outline: none;
+      }
+      .navbar-brand img {
+          height: 100px;
+          transition: transform 0.3s ease;
+      }
+      #contact-form button {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s;
+          width: 100%;
+      }
+      #contact-form button:hover {
+          background-color: #0056b3;
+          transform: scale(1.05);
+      }
+      @media (max-width: 768px) {
+          #contact-form {
+              padding: 15px;
+          }
+          #contact-form input,
+          #contact-form textarea {
+              font-size: 14px;
+          }
+      }
+      #status-message {
+          margin-top: 10px;
+          font-size: 16px;
+          text-align: center;
+      }
+      .social-media-buttons {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin: 20px 0;
+      }
+      .social-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          color: #fff;
+          font-size: 20px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+      .social-button:hover {
+          transform: scale(1.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .facebook { background-color: #3b5998; }
+      .twitter { background-color: #1da1f2; }
+      .instagram { background-color: #e4405f; }
+      .linkedin { background-color: #0077b5; }
+      .whatsapp { background-color: #25D366; }
+      .telegram { background-color: #0088cc; }
+      .tiktok { background-color: #000000; }
+      @media (max-width: 768px) {
+          .social-button {
+              width: 40px;
+              height: 40px;
+              font-size: 16px;
+          }
+      }
+      @media (max-width: 480px) {
+          .social-button {
+              width: 35px;
+              height: 35px;
+              font-size: 14px;
+          }
+      }
+      /* Dark Mode Styles */
+      .dark-mode {
+          background-color: #333;
+          color: #fff;
+      }
+      .dark-mode .navbar {
+          background: linear-gradient(to right, #004085, #3c096c);
+      }
+      .dark-mode #contact-form {
+          background-color: #444;
+          color: #fff;
+      }
+      .dark-mode #contact-form input,
+      .dark-mode #contact-form textarea {
+          background-color: #555;
+          color: #fff;
+          border-color: #666;
+      }
+      .dark-mode #contact-form input::placeholder,
+      .dark-mode #contact-form textarea::placeholder {
+          color: #ccc;
+      }
+      .dark-mode #contact-form input:focus,
+      .dark-mode #contact-form textarea:focus {
+          border-color: #007bff;
+      }
+      dark-mode .map iframe {
+          filter: invert(1) hue-rotate(180deg);
+      }
+      .dark-mode .copyright p {
+          color: #fff;
+      }
+      .dark-mode .location_icon a {
+          color: #fff;
+      }
+      .dark-mode .location_icon a:hover {
+          color: rgb(16, 216, 16);
+      }
+      .dark-mode .modal-content {
+          background-color: #444;
+          color: #fff;
+      }
+      .dark-mode .btn-close {
+          filter: invert(1);
+      }
+      .dark-mode .modal-body a {
+          color: rgb(16, 216, 16);
+      }
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    .back-to-top:hover {
+        background-color: #0056b3;
+    }
+    .contact-dev-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    .contact-dev-btn:hover {
+        background-color: #0056b3;
+        color:rgb(35, 4, 65);
+    }
+    .modal{
+        z-index:1000000000000;
+    }
+    /* Default text color for light mode */
+#status-message {
+    color: #333; /* Dark gray, readable on light background */
+}
+
+/* Footer links in light mode */
+.location_icon a {
+    color: #007bff; /* Blue, matches theme and visible on light background */
+}
+
+/* Ensure form input text is visible in light mode (though default is fine) */
+#contact-form input,
+#contact-form textarea {
+    color: #333; /* Explicitly dark for light mode */
+}
+
+/* Dark mode overrides */
+.dark-mode #status-message {
+    color: #fff; /* White text for dark background */
+}
+
+.dark-mode .location_icon a {
+    color: #fff; /* Already present, kept for clarity */
+}
+
+.dark-mode #contact-form input,
+.dark-mode #contact-form textarea {
+    color: #fff; /* Already present, kept for clarity */
+}
+
+/* Default styles for light mode */
+body {
+    background-color: #fff;
+    color: #333; /* Dark gray text for readability */
+}
+
+/* Status message in light mode */
+#status-message {
+    color: #333; /* Dark gray, visible on light background */
+}
+
+/* Footer links in light mode */
+.location_icon a {
+    color: #007bff; /* Blue for visibility and theme consistency */
+}
+
+/* Form inputs in light mode */
+#contact-form input,
+#contact-form textarea {
+    color: #333; /* Dark text for readability */
+    background-color: #fff; /* White background */
+    border: 1px solid #ccc; /* Light gray border */
+}
+
+/* Placeholder text in light mode */
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+    color: #666; /* Medium gray for placeholders */
+}
+
+/* Title and copyright text in light mode */
+body:not(.dark-mode) .titlepage h2 {
+    color: #000; /* Black title for strong contrast */
+}
+
+body:not(.dark-mode) .copyright p {
+    color: #333; /* Dark gray for readability */
+}
+
+/* Modal styles in light mode */
+body:not(.dark-mode) .modal-content {
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text */
+}
+
+body:not(.dark-mode) .modal-body a {
+    color: #007bff; /* Blue links */
+}
+
+/* Dark mode styles (unchanged) */
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode .navbar {
+    background: linear-gradient(to right, #004085, #3c096c);
+}
+
+.dark-mode #contact-form {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode #contact-form input,
+.dark-mode #contact-form textarea {
+    background-color: #555;
+    color: #fff;
+    border-color: #666;
+}
+
+.dark-mode #contact-form input::placeholder,
+.dark-mode #contact-form textarea::placeholder {
+    color: #ccc;
+}
+
+.dark-mode #contact-form input:focus,
+.dark-mode #contact-form textarea:focus {
+    border-color: #007bff;
+}
+
+.dark-mode .map iframe {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.dark-mode .copyright p {
+    color: #fff;
+}
+
+.dark-mode .location_icon a {
+    color: #fff;
+}
+
+.dark-mode .location_icon a:hover {
+    color: rgb(16, 216, 16);
+}
+
+.dark-mode .modal-content {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .btn-close {
+    filter: invert(1);
+}
+
+.dark-mode .modal-body a {
+    color: rgb(16, 216, 16);
+}
+.footer .location_icon a {
+    color: #007bff;
+}
+
+body:not(.dark-mode) .footer {
+    color: #333;
+}
