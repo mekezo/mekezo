@@ -1,5 +1,5 @@
-  // i18next Initialization
-  i18next.init({
+// i18next Initialization
+i18next.init({
     lng: 'en',
     resources: {
         en: {
@@ -95,7 +95,7 @@
             }
         }
     }
-}, function(err, t) {
+}, function (err, t) {
     updateContent();
 });
 
@@ -121,15 +121,15 @@ function updateContent() {
 }
 
 // Language Switcher
-document.getElementById('language-select').addEventListener('change', function() {
-    i18next.changeLanguage(this.value, function() {
+document.getElementById('language-select').addEventListener('change', function () {
+    i18next.changeLanguage(this.value, function () {
         updateContent();
         renderProducts();
     });
 });
 
 // Theme Toggle
-document.getElementById('theme-icon').addEventListener('click', function() {
+document.getElementById('theme-icon').addEventListener('click', function () {
     document.body.classList.toggle('dark-mode');
     if (document.body.classList.contains('dark-mode')) {
         this.classList.remove('fa-moon');
@@ -149,62 +149,62 @@ fetch('https://api.airtable.com/v0/appufYLt1wjHScUPZ/Table%201', {
         'Authorization': 'Bearer patSrV4DClRIQ4eNM.e81e0ca11890a602ec0caafc4fe940cc212ff4855dacd9d2173e35bf082c3d3b'
     }
 })
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-})
-.then(data => {
-    productsData = data.records;
-    renderProducts();
-})
-.catch(error => {
-    console.error('Error fetching products:', error);
-    const containers = ['#airtable-comfort', '#airtable-safety', '#airtable-style', '#airtable-misc'];
-    containers.forEach(id => {
-        document.querySelector(id).innerHTML = '<p data-i18n="fetch_error">Failed to load products. Please try again later.</p>';
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        productsData = data.records;
+        renderProducts();
+    })
+    .catch(error => {
+        console.error('Error fetching products:', error);
+        const containers = ['#airtable-comfort', '#airtable-safety', '#airtable-style', '#airtable-misc'];
+        containers.forEach(id => {
+            document.querySelector(id).innerHTML = '<p data-i18n="fetch_error">Failed to load products. Please try again later.</p>';
+        });
     });
-});
 
 function renderProducts() {
-const lang = i18next.language;
-const comfortContainer = document.querySelector('#airtable-comfort');
-const safetyContainer = document.querySelector('#airtable-safety');
-const styleContainer = document.querySelector('#airtable-style');
-const miscContainer = document.querySelector('#airtable-misc');
-[comfortContainer, safetyContainer, styleContainer, miscContainer].forEach(container => {
-if (container) container.innerHTML = '';
-});
-if (productsData.length === 0) {
-comfortContainer.innerHTML = '<p data-i18n="no_products">No products found in Airtable.</p>';
-return;
-}
-productsData.forEach(product => {
-const fields = product.fields;
-const name = fields[`Name_${lang}`] || fields.Name || 'Unnamed Product';
-const description = fields[`Description_${lang}`] || fields.Description || 'No description available';
-const category = (fields.Category || 'Other').toLowerCase();
-const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : '/image/placeholder.jpg';
-const price = fields.Price ? 'ETB ' + fields.Price : 'Contact for price';
-const videoAttachment = fields.Video && fields.Video[0] ? fields.Video[0].url : ''; // Updated for attachment field
-let targetContainer;
-switch (category) {
-    case 'comfort':
-        targetContainer = comfortContainer;
-        break;
-    case 'safety':
-        targetContainer = safetyContainer;
-        break;
-    case 'style':
-        targetContainer = styleContainer;
-        break;
-    default:
-        targetContainer = miscContainer;
-        break;
-}
-if (targetContainer) { 
-    targetContainer.innerHTML += `
+    const lang = i18next.language;
+    const comfortContainer = document.querySelector('#airtable-comfort');
+    const safetyContainer = document.querySelector('#airtable-safety');
+    const styleContainer = document.querySelector('#airtable-style');
+    const miscContainer = document.querySelector('#airtable-misc');
+    [comfortContainer, safetyContainer, styleContainer, miscContainer].forEach(container => {
+        if (container) container.innerHTML = '';
+    });
+    if (productsData.length === 0) {
+        comfortContainer.innerHTML = '<p data-i18n="no_products">No products found in Airtable.</p>';
+        return;
+    }
+    productsData.forEach(product => {
+        const fields = product.fields;
+        const name = fields[`Name_${lang}`] || fields.Name || 'Unnamed Product';
+        const description = fields[`Description_${lang}`] || fields.Description || 'No description available';
+        const category = (fields.Category || 'Other').toLowerCase();
+        const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : '/image/placeholder.jpg';
+        const price = fields.Price ? 'ETB ' + fields.Price : 'Contact for price';
+        const videoAttachment = fields.Video && fields.Video[0] ? fields.Video[0].url : ''; // Updated for attachment field
+        let targetContainer;
+        switch (category) {
+            case 'comfort':
+                targetContainer = comfortContainer;
+                break;
+            case 'safety':
+                targetContainer = safetyContainer;
+                break;
+            case 'style':
+                targetContainer = styleContainer;
+                break;
+            default:
+                targetContainer = miscContainer;
+                break;
+        }
+        if (targetContainer) {
+            targetContainer.innerHTML += `
         <div class="col-12 col-sm-6 col-lg margin_bottom">
             <div class="card product-card" data-category="${category}" data-bs-toggle="modal" data-bs-target="#productModal" data-product="${product.id}">
                 <img src="${imageUrl}" class="card-img-top" alt="${name}" loading="lazy">
@@ -217,46 +217,46 @@ if (targetContainer) {
             </div>
         </div>
     `;
-}
-});
+        }
+    });
 }
 
 // Modal Content Population
 // Modal Content Population
-document.addEventListener('click', function(event) {
-const card = event.target.closest('.product-card');
-if (card) {
-const productId = card.getAttribute('data-product');
-let product = productsData.find(p => p.id === productId);
-if (product) {
-    const fields = product.fields;
-    // Send GA4 event for product view
-    gtag('event', 'view_item', {
-        item_id: productId,
-        item_name: name,
-        item_category: category
-    })
-    const name = fields[`Name_${i18next.language}`] || fields.Name || 'Unnamed Product';
-    const description = fields[`Description_${i18next.language}`] || fields.Description || 'No description available';
-    const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : null;
-    const price = fields.Price ? 'ETB ' + fields.Price : 'Contact for price';
-    const videoAttachment = fields.Video && fields.Video[0] ? fields.Video[0].url : '';
-    let modalContent = `
+document.addEventListener('click', function (event) {
+    const card = event.target.closest('.product-card');
+    if (card) {
+        const productId = card.getAttribute('data-product');
+        let product = productsData.find(p => p.id === productId);
+        if (product) {
+            const fields = product.fields;
+            // Send GA4 event for product view
+            gtag('event', 'view_item', {
+                item_id: productId,
+                item_name: name,
+                item_category: category
+            })
+            const name = fields[`Name_${i18next.language}`] || fields.Name || 'Unnamed Product';
+            const description = fields[`Description_${i18next.language}`] || fields.Description || 'No description available';
+            const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : null;
+            const price = fields.Price ? 'ETB ' + fields.Price : 'Contact for price';
+            const videoAttachment = fields.Video && fields.Video[0] ? fields.Video[0].url : '';
+            let modalContent = `
         <h3>${name}</h3>
     `;
-    // Include image only if it exists and is not a placeholder
-    if (imageUrl && imageUrl !== '/image/placeholder.jpg') {
-        modalContent += `
+            // Include image only if it exists and is not a placeholder
+            if (imageUrl && imageUrl !== '/image/placeholder.jpg') {
+                modalContent += `
             <img src="${imageUrl}" alt="${name}" style="width:100%; max-width:500px; margin-bottom:20px;" loading="lazy">
         `;
-    }
-    modalContent += `  <p>${description}</p>
+            }
+            modalContent += `  <p>${description}</p>
     <p><strong>Price: </strong>${price}</p>
     `;
 
-    // Include video if it exists
-    if (videoAttachment) {
-        modalContent += `
+            // Include video if it exists
+            if (videoAttachment) {
+                modalContent += `
             <div>
                 <h4>Product Video</h4>
                 <video controls style="width:100%; max-width:500px;">
@@ -265,15 +265,15 @@ if (product) {
                 </video>
             </div>
         `;
+            }
+            document.getElementById('modal-content').innerHTML = modalContent;
+        }
     }
-    document.getElementById('modal-content').innerHTML = modalContent;
-}
-}
 });
 // Search and Filter Functionality
 document.getElementById('search-input').addEventListener('input', filterProducts);
 // products.js, inside the category filter event listener
-document.getElementById('category-filter').addEventListener('change', function() {
+document.getElementById('category-filter').addEventListener('change', function () {
     const selectedCategory = this.value;
     gtag('event', 'select_category', {
         category: selectedCategory
@@ -286,33 +286,47 @@ function filterProducts() {
     const selectedCategory = document.getElementById('category-filter').value;
     if (searchTerm) {
         gtag('event', 'search', {
-            search_term: searchTerm});
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-        const productName = card.querySelector('.card-title').textContent.toLowerCase();
-        const productCategory = card.getAttribute('data-category');
-        const matchesSearch = productName.includes(searchTerm);
-        const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
-        card.style.display = (matchesSearch && matchesCategory) ? 'block' : 'none';
-    });
-}
-
-// Social Sharing (Basic Implementation)
-document.getElementById('share-product').addEventListener('click', function() {
-    const title = document.querySelector('#productModalLabel').textContent;
-    const url = window.location.href;
-    if (navigator.share) {
-        navigator.share({
-            title: title,
-            text: 'Check out this product from Mekezo!',
-            url: url
-        }).catch(console.error);
-    } else {
-        navigator.clipboard.writeText(url).then(() => {
-            alert('Link copied to clipboard: ' + url);
-        }).catch(err => {
-            console.error('Could not copy text: ', err);
-            alert('Sharing not supported. Copy this link manually: ' + url);
+            search_term: searchTerm
+        });
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            const productName = card.querySelector('.card-title').textContent.toLowerCase();
+            const productCategory = card.getAttribute('data-category');
+            const matchesSearch = productName.includes(searchTerm);
+            const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
+            card.style.display = (matchesSearch && matchesCategory) ? 'block' : 'none';
         });
     }
-});
+
+    // products.js, inside the share-product event listener
+    document.getElementById('share-product').addEventListener('click', function () {
+        const title = document.querySelector('#productModalLabel').textContent;
+        const url = window.location.href + '?utm_source=shared&utm_medium=social&utm_campaign=product_share';
+        gtag('event', 'share', {
+            content_type: 'product',
+            item_id: title
+        });
+
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                text: 'Check out this product from Mekezo!',
+                url: url
+            }).catch(console.error);
+        } else {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard: ' + url);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                alert('Sharing not supported. Copy this link manually: ' + url);
+            });
+        }
+    });
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Assuming form submission logic here
+        gtag('event', 'generate_lead', {
+            form_id: 'contact-form'
+        });
+        // Submit form or redirect to thank-you page
+    });
