@@ -230,6 +230,12 @@ const productId = card.getAttribute('data-product');
 let product = productsData.find(p => p.id === productId);
 if (product) {
     const fields = product.fields;
+    // Send GA4 event for product view
+    gtag('event', 'view_item', {
+        item_id: productId,
+        item_name: name,
+        item_category: category
+    })
     const name = fields[`Name_${i18next.language}`] || fields.Name || 'Unnamed Product';
     const description = fields[`Description_${i18next.language}`] || fields.Description || 'No description available';
     const imageUrl = fields.Image && fields.Image[0] ? fields.Image[0].url : null;
@@ -266,11 +272,21 @@ if (product) {
 });
 // Search and Filter Functionality
 document.getElementById('search-input').addEventListener('input', filterProducts);
-document.getElementById('category-filter').addEventListener('change', filterProducts);
+// products.js, inside the category filter event listener
+document.getElementById('category-filter').addEventListener('change', function() {
+    const selectedCategory = this.value;
+    gtag('event', 'select_category', {
+        category: selectedCategory
+    });
+    filterProducts();
+});
 
 function filterProducts() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const selectedCategory = document.getElementById('category-filter').value;
+    if (searchTerm) {
+        gtag('event', 'search', {
+            search_term: searchTerm});
     const productCards = document.querySelectorAll('.product-card');
     productCards.forEach(card => {
         const productName = card.querySelector('.card-title').textContent.toLowerCase();
